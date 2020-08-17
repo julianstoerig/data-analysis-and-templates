@@ -8,29 +8,103 @@ output:
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+library(tibble)
+library(ggplot2)
+library(utils)
+library(dplyr)
+
+data <- as_tibble(iris)
 ```
 
-Column {data-width=650}
------------------------------------------------------------------------
 
-### Chart A
+## Column {data-width=500, .tabset}
 
-```{r}
+### Abstract
 
+An Analysis of the Iris data-set reveals that the importance of the petal size
+is much higher than that of the sepal leaf size for identification of these Iris
+species, and also shows that to gain a higher identification accuracy, it is also
+useful to take measurements of the sepal leaf width, which is much more useful
+than sepal leaf length.
+
+### Introduction
+
+The iris data-set contains 150 observation, divided into
+50 observations each between three different species of iris flower,
+Iris setosa, Iris versicolor and Iris virginica.
+
+For each observation it includes the length and width of the flowers
+sepal and petal leaves, along with the species name.
+
+The data analysis for this report is done in R, this report written in reproducible R-Markdown, the source code for which is availiable [here](https://github.com/julianstoerig/data-analysis-and-templates/blob/master/learning/IrisSpeciesIdentificationReport.Rmd).
+
+### Data Analysis
+
+For the identification of these Iris species, the petal leaves are of much
+higher significance than the sepal leaves. This is because the overlap between
+I. versicolor and I. virginica is much larger for the sepal leaves (*fig. 1*),
+than it is for the petal leaves (*fig. 2*).
+
+Differentiating between these two and I. setosa is also easiest by
+measuring the petal leaves, as is evidenced by the seperation between
+I. setosa and the to other Iris species.
+visible in *fig. 4*.
+
+## Column {data-width=500, .tabset}
+
+### Sepal leaves: *fig. 1 & fig. 3*
+
+```{r, echo=FALSE}
+# figure 1
+ss <- ggplot(data, aes(x=Sepal.Length,
+                 y=Sepal.Width,
+                 color=Species)) +
+  geom_point()
+ss <- ss +
+  xlab("length") +
+  ylab("width") +
+  labs(title = "fig. 2",
+       subtitle = "petal leaves: scatter plot")
+ss
+
+# figure 3
+sb <- ggplot(data, aes(x=Sepal.Length,
+                 y=Sepal.Width,
+                 color=Species)) +
+  geom_boxplot()
+sb <- sb +
+  xlab("length") +
+  ylab("width") +
+  labs(title = "fig. 3",
+       subtitle = "sepal leaves: box plot")
+sb
 ```
 
-Column {data-width=350}
------------------------------------------------------------------------
+### Petal leaves: *fig. 2 & fig. 4*
 
-### Chart B
+```{r, echo=FALSE}
+# figure 2
+ps <- ggplot(data, aes(x=Petal.Length,
+                 y=Petal.Width,
+                 color=Species)) +
+  geom_point()
+ps <- ps +
+  xlab("length") +
+  ylab("width") +
+  labs(title = "fig. 2",
+       subtitle = "petal leaves: scatter plot")
+ps
 
-```{r}
-
-```
-
-### Chart C
-
-```{r}
-
+# figure 4
+pb <- ggplot(data, aes(x=Petal.Length,
+                 y=Petal.Width,
+                 color=Species)) +
+  geom_boxplot()
+pb <- pb +
+  xlab("length") +
+  ylab("width") +
+  labs(title = "fig. 4",
+       subtitle = "petal leaves: box plot")
+pb
 ```
 
