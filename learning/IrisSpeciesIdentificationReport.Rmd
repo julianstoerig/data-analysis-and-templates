@@ -1,0 +1,28 @@
+---
+title: "Iris species identification"
+author: "Julian Störig"
+date: "17.08.2020"
+output: html_document
+---
+
+## Data Description
+
+The iris data-set contains 150 observation, divided into
+50 observations each between three different species of iris flower,
+Iris setosa, Iris versicolor and Iris virginica.
+
+For each observation it includes the length and width of the flowers
+sepal and petal leaves, along with the species name.
+
+## Data Analysis
+
+The data analysis for this report is done in R, this report written in reproducible R-Markdown, the source code for which is availiable here
+```{r}
+library(tibble)
+library(ggplot2)
+library(utils)
+library(dplyr)
+
+data <- as_tibble(iris)
+```
+
